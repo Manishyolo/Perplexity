@@ -25,6 +25,7 @@ export async function registerController(req,res,next){
     })
 
     const emailverificationToken = jwt.sign({
+        username:user.username,
         email:user.email,
     },process.env.JWT_SECRET);
 
@@ -97,7 +98,7 @@ export async function loginController(req,res){
             })
         }
       
-        const token = jwt.sign({email:user.email},process.env.JWT_SECRET)
+        const token = jwt.sign({username:user.username,email:user.email},process.env.JWT_SECRET)
 
         res.cookie('token',token)
         return res.json({

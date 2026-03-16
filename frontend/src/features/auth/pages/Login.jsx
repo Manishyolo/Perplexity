@@ -1,13 +1,38 @@
 import React, { useState } from 'react'
+import {useAuth} from "../hook/useAuth.js";
+import {useNavigate} from "react-router"
+import { useSelector } from 'react-redux';
+
 
 export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const {handleLogin} = useAuth();
+  const Navigate = useNavigate();
+  const user = useSelector((state)=>state.auth.user)
+  const loading = useSelector((state)=>state.auth.loading)
 
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async(e) => {
     e.preventDefault()
     console.log('Email:', email, 'Password:', password)
+
+   const payload = {
+    email,
+    password
+   }
+  await handleLogin(payload);
+  Navigate('/')
+
+  
+
+
     // Add your login logic here
+  }
+
+  if(!loading && user){
+     Navigate('/')
   }
 
   return (
@@ -36,7 +61,7 @@ export const Login = () => {
           {/* Password Input */}
           <div>
             <input
-              type="password"
+              type="text"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
