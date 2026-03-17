@@ -98,13 +98,14 @@ export async function loginController(req,res){
             })
         }
       
-        const token = jwt.sign({username:user.username,email:user.email},process.env.JWT_SECRET)
+        const token = jwt.sign({userid:user._id,username:user.username,email:user.email},process.env.JWT_SECRET)
 
         res.cookie('token',token)
         return res.json({
             message:"login successful",
             token,
             user:{
+                userid:user._id,
                 username:user.username,
                 email:user.email
 

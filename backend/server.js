@@ -12,7 +12,7 @@ initSocket(httpServer)
 
 connectDB()
 
-generateResponse("what are you")
+
 
 httpServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

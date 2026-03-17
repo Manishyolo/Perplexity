@@ -4,7 +4,7 @@ const messageSchema = new mongoose.Schema(
     {
         chat: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Chat',
+            ref: 'Chats',
             required: true,
         },
         content: {
@@ -20,6 +20,5 @@ const messageSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const messageModel = mongoose.model('Message', messageSchema);
+export const messageModel = mongoose.model('Messages', messageSchema);
 
-export default messageModel;

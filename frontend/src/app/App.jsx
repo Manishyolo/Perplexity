@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 const App = () => {
 
   const {handleGetme} = useAuth();
+  
   useEffect(()=>{
     handleGetme()
   },[])
